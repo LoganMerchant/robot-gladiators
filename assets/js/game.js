@@ -1,15 +1,32 @@
-function fight() {
-    window: alert("The fight has begun!");
-}
-
 var playerName = window.prompt("What is your robot's name?");
+var playerHealth = 100;
+var playerAttack = 10;
 
-console.log(playerName);
+console.log(playerName, playerAttack, playerHealth);
 
-console.log("This logs a string, good for leaving yourself a message");
+var enemyName = "Roborto";
+var enemyHealth = 50;
+var enemyAttack = 12;
 
-console.log(10 + 10);
+var fight = function() {
+    // Alerts user of Round Start //
+    window.alert("Welcome to Robot Gladiators!");
 
-console.log("Our robot's name is " + playerName);
+    // Subtracts the user's attack from the enemy's health //
+    enemyHealth = enemyHealth - playerAttack;
 
-// fight();
+    // Logs a resulting message in the console //
+    console.log(
+        playerName + " attacked " + enemyName + ". " + enemyName + " now has " + enemyHealth + " health remaining."
+        );
+    
+    // Subtracts the enemy's attack from the user's health //
+    playerHealth = playerHealth - enemyAttack;
+
+    // Logs a resulting message in the console //
+    console.log(
+        enemyName + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
+        );
+};
+
+fight();
