@@ -79,7 +79,16 @@ var startGame = function() {
             // debugger;
             
             fight(pickedEnemyName);
-        } else {
+
+            if (i < enemyNames.length - 1 && playerHealth > 0) {
+                var storeConfirm = window.confirm("The fight is over, visit the store before the next round?");
+                
+                if (storeConfirm) {
+                    shop();
+                }
+            }
+        } 
+        else {
             window.alert("You have lost your robot in battle! GAME OVER!");
             break;
         }
@@ -103,4 +112,43 @@ var endGame = function() {
     }
 }
 
-startGame();
+var shop = function() {
+    var shopOptionPrompt = window.prompt(
+        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE'."
+    );
+
+    switch (shopOptionPrompt) {
+        case "REFILL":
+        case "refill":
+            if (playerMoney >= 5) {
+                window.alert("Refilling player's health by 10 for 5 dollars.");
+                playerHealth = playerHealth + 10;
+                playerMoney = playerMoney - 5;
+            } else {
+                window.alert("You don't have enough money!");
+            }
+            break;
+
+        case "UPGRADE":
+        case "upgrade":
+            if (playerMoney >= 5) {
+                window.alert("Upgrading player's attack by 10 for 5 dollars.");
+                playerAttack = playerAttack + 10;
+                playerMoney = playerMoney - 5;
+            } else {
+                window.alert("You don't have enough money!");
+            }
+            break;
+
+        case "LEAVE":
+        case "leave":
+            window.alert("Leaving the shop.");
+            break;
+
+        default:
+            window.alert("You did not pick a valid option. Try again.");
+            shop();
+            break;
+    }
+}
+startGame()
