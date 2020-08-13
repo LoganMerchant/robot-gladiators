@@ -1,11 +1,3 @@
-// At game's end, ask if user would like to play again.
-    // Display user's score 
-    // Ask for decision
-// After an enemy's defeat, ask if user would like to visit the shop.
-    // The shop should allow:
-        // *REFILL health.
-        // *UPGRADE attack.
-        // *LEAVE the store.
 var fight = function(enemy) {
     while(enemy.health > 0 && playerInfo.health > 0) {
         // Asks user to fight or skip 
@@ -66,8 +58,6 @@ var startGame = function() {
             var pickedEnemyObj = enemyInfo[i];
             
             pickedEnemyObj.health = randomNumber(40, 60);
-            
-            // debugger;
             
             fight(pickedEnemyObj);
 
@@ -136,8 +126,19 @@ var randomNumber = function(min,max) {
     return value;
 };
 
+var getPlayerName = function() {
+    var name = "";
+
+    while(name === "" || name === null) {
+        name = prompt("What is your robot's name?");
+    } 
+
+    console.log("Your robot's name is " + name + ".");
+    return name; 
+}
+
 var playerInfo = {
-    name: window.prompt("What is your robot's name?"),
+    name: getPlayerName(),
     health: 100,
     attack: 10,
     money: 10,
