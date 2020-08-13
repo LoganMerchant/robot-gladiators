@@ -107,22 +107,21 @@ var endGame = function() {
 
 var shop = function() {
     var shopOptionPrompt = window.prompt(
-        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the store? Please enter one: 'REFILL', 'UPGRADE', or 'LEAVE'."
+        'Would you like to REFILL[1] your health, UPGRADE[2] your attack, or LEAVE[3] the store? Please enter "1", "2", or "3".'
     );
+    
+    shopOptionPrompt = parseInt(shopOptionPrompt);
 
     switch (shopOptionPrompt) {
-        case "REFILL":
-        case "refill":
+        case 1:
             playerInfo.refillHealth();
             break;
 
-        case "UPGRADE":
-        case "upgrade":
+        case 2:
             playerInfo.upgradeAttack();
             break;
 
-        case "LEAVE":
-        case "leave":
+        case 3:
             window.alert("Leaving the shop.");
             break;
 
@@ -160,7 +159,7 @@ var playerInfo = {
         this.attack = 10;
     },
     refillHealth: function() {
-        if (playerMoney >= 7) {
+        if (playerInfo.money >= 7) {
             window.alert("Refilling your robot's health by 20 points, for 7 dollars.");
             this.health += 20; 
             this.money -= 7;
@@ -169,7 +168,7 @@ var playerInfo = {
         }
     },
     upgradeAttack: function () {
-        if (playerMoney >= 7) {
+        if (playerInfo.money >= 7) {
             window.alert("Upgrading your robot's attack by 6 points, for 7 dollars.");
             this.attack += 6;
             this.money -= 7;
