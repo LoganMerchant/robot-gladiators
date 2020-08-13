@@ -101,13 +101,24 @@ var startGame = function() {
 };
 
 var endGame = function() {
+    var highScore = localStorage.getItem("highscore");
+    highScore = highScore || 0;
+
     if (playerInfo.health > 0) {
-        window.alert("Great job, you've survived the game! You now have a score of " + playerInfo.money) + ".";
+        window.alert("Great job, you've survived the game! You now have a score of " + playerInfo.money + ".");
     } else {
         window.alert("You've lost your robot in the battle.");
     }
-    var playAgainConfirm = window.confirm("Would you like to play again?");
 
+    if (playerInfo.money < highScore) {
+        window.alert(playerInfo.name + " did not beat the high score of " + highScore + ".");
+    } else {
+        window.alert(playerInfo.name + " beat the previous high score! CONGRATULATIONS!");
+        localStorage.setItem("name", playerInfo.name);
+        localStorage.setItem("highscore", playerInfo.money);
+    }
+
+    var playAgainConfirm = window.confirm("Would you like to play again?");
     if (playAgainConfirm) {
         startGame()
     } else {
